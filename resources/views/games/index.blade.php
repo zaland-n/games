@@ -16,6 +16,7 @@
                     <th>Game</th>
                     <th>Platform</th>
                     <th>Rating</th>
+                    <th>Genre</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +25,8 @@
                         <td>{{ $game->id }}</td>
                         <td>{{ $game->game_name }}</td>
                         <td>{{ $game->platform }}</td>
-                        <td>{{ $game->rating }}/10</td> 
+                        <td>{{ $game->rating }}/10</td>
+                        <td>{{ $game->genre }}/10</td> 
                     </tr>
                 @endforeach
             </tbody>
