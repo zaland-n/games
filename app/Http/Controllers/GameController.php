@@ -31,6 +31,15 @@ class GameController extends Controller
     return view('games.edit', ['game' => $game]);
 }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $game = Game::find($id);
+        return view('games.show', ['game' => $game]);
+    }
+
 public function update(Request $request, $id)
 {
     $request->validate([

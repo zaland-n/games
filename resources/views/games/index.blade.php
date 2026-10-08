@@ -14,6 +14,7 @@
                 <th>Rating</th>
                 <th>Genre</th>
                 <th>Edit</th>
+                <th>Show</th>
                 <th>Delete</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                     <td>{{ $game->rating }}/10</td>
                     <td>{{ $game->genre }}</td>
                     <td><a href="/games/edit/{{ $game->id }}" class="btn btn-primary btn-sm">Edit</a></td>
+                    <td><a href="/games/show/{{ $game->id }}" class="btn btn-info btn-sm">Show</a></td>
                     <td>
                         <form action="/games/destroy/{{ $game->id }}" method="post" style="display:inline;">
                             @csrf
@@ -39,6 +41,7 @@
             <tr>
                 <td colspan="4"><strong>Gemiddelde rating:</strong></td>
                 <td><strong>{{ count($games) > 0 ? number_format($sum / count($games), 1) : 0 }}/10</strong></td>
+                <td></td>
                 <td></td>
                 <td></td>
             </tr>
