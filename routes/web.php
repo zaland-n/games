@@ -12,3 +12,5 @@ Route::get('games/edit/{id}', [App\Http\Controllers\GameController::class, 'edit
 // Accept GET on the update URL and redirect to the edit view to avoid 405s
 Route::get('games/update/{id}', [App\Http\Controllers\GameController::class, 'edit']);
 Route::post('games/update/{id}', [App\Http\Controllers\GameController::class, 'update']);
+// Delete (destroy) route - uses POST with CSRF-protected form
+Route::post('games/destroy/{id}', [App\Http\Controllers\GameController::class, 'destroy']);

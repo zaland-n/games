@@ -55,9 +55,13 @@ public function update(Request $request, $id)
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $game = Game::find($id);
+        if ($game) {
+            $game->delete();
+        }
+        return redirect('/games');
     }
 
 
