@@ -18,13 +18,8 @@ class GameController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * (show implemented below)
      */
-    public function show(string $id)
-    {
-        //
-    }
-
     public function edit($id)
 {
     $game = Game::find($id);
