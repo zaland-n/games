@@ -7,6 +7,7 @@
     <title>Game Collection</title>
 </head>
 <body>
+    <a href="/games/create" class="btn btn-success mb-3">🎮 Add Game</a>
     <div class="container" style="margin:40px;">
         <h1 class="display-4">🎮 Game Collection</h1>
         <table class="table">
@@ -17,6 +18,7 @@
                     <th>Platform</th>
                     <th>Rating</th>
                     <th>Genre</th>
+                    <th>Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +28,8 @@
                         <td>{{ $game->game_name }}</td>
                         <td>{{ $game->platform }}</td>
                         <td>{{ $game->rating }}/10</td>
-                        <td>{{ $game->genre }}/10</td> 
+                        <td>{{ $game->genre }}/10</td>
+                        <td><a href="/games/edit/{{ $game->id }}" class="btn btn-primary btn-sm">Edit</a></td>
                     </tr>
                 @endforeach
             </tbody>
