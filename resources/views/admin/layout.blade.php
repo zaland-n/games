@@ -1,0 +1,13 @@
+@extends('base')
+
+@section('content')
+    <nav class="mb-4">
+        <a href="{{ route('admin.permissions.index') }}" class="btn btn-outline-primary">Permissies beheren</a>
+    </nav>
+
+    @if (session('status'))
+        <div class="alert alert-success">{{ session('status') }}</div>
+    @endif
+
+    @yield('admin-content')
+@endsection

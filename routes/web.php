@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\Admin\PermissionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +21,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('games/update/{id}', [GameController::class, 'edit']);
     Route::post('games/update/{id}', [GameController::class, 'update']);
     Route::post('games/destroy/{id}', [GameController::class, 'destroy']);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('permissions', PermissionController::class)->except('show');
 });
 
 Route::get('/dashboard', function () {
