@@ -8,10 +8,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('games', [GameController::class, 'index']);
-Route::get('games/show/{id}', [GameController::class, 'show']);
+Route::middleware(['auth', 'role:admin|klant'])->group(function () {
+    Route::get('games', [GameController::class, 'index']);
+});
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('games/show/{id}', [GameController::class, 'show']);
     Route::get('games/create', [GameController::class, 'create']);
     Route::post('games/store', [GameController::class, 'store']);
     Route::get('games/edit/{id}', [GameController::class, 'edit']);
