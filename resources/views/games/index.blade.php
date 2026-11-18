@@ -3,7 +3,11 @@
 @section('title', '🎮 Game Collection')
 
 @section('content')
-    <a href="/games/create" class="btn btn-success mb-3">Add Game</a>
+    @role('admin')
+        @can('product invoeren')
+            <a href="/games/create" class="btn btn-success mb-3">Add Game</a>
+        @endcan
+    @endrole
 
     <table class="table">
         <thead class="thead-dark">
@@ -13,9 +17,15 @@
                 <th>Platform</th>
                 <th>Rating</th>
                 <th>Genre</th>
-                <th>Edit</th>
+                @role('admin')
+                    @can('product aanpassen')
+                        <th>Edit</th>
+                    @endcan
+                    @can('product verwijderen')
+                        <th>Delete</th>
+                    @endcan
+                @endrole
                 <th>Show</th>
-                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -28,14 +38,20 @@
                     <td>{{ $game->platform }}</td>
                     <td>{{ $game->rating }}/10</td>
                     <td>{{ $game->genre }}</td>
-                    <td><a href="/games/edit/{{ $game->id }}" class="btn btn-primary btn-sm">Edit</a></td>
+                    @role('admin')
+                        @can('product aanpassen')
+                            <td><a href="/games/edit/{{ $game->id }}" class="btn btn-primary btn-sm">Edit</a></td>
+                        @endcan
+                        @can('product verwijderen')
+                            <td>
+                                <form action="/games/destroy/{{ $game->id }}" method="post" style="display:inline;">
+                                    @csrf
+                                    <button onclick="return confirm('Weet je het zeker?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        @endcan
+                    @endrole
                     <td><a href="/games/show/{{ $game->id }}" class="btn btn-info btn-sm">Show</a></td>
-                    <td>
-                        <form action="/games/destroy/{{ $game->id }}" method="post" style="display:inline;">
-                            @csrf
-                            <button onclick="return confirm('Weet je het zeker?')" class="btn btn-danger btn-sm" type="submit">Delete</button>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
             <tr>
