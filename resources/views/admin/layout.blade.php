@@ -3,6 +3,7 @@
 @section('content')
     <nav class="mb-4">
         <a href="{{ route('admin.permissions.index') }}" class="btn btn-outline-primary">Permissies beheren</a>
+        <a href="{{ route('admin.roles.index') }}" class="btn btn-outline-primary">Rollen beheren</a>
     </nav>
 
     @if (session('status'))
